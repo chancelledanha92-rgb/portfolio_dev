@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /.data/
+Disallow: /api/submissions
+
+# Sitemaps
+Sitemap: /sitemap.xml
+
+# Crawl-delay (optional, adjust based on your server)
+Crawl-delay: 1
