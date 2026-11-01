@@ -1,0 +1,89 @@
+import { useState } from "react";
+import Header from "@/components/Header";
+
+export default function Index() {
+  const [activeSection, setActiveSection] = useState("hero");
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Header />
+
+      <nav className="border-b border-gray-200 bg-white sticky top-20 z-40">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex gap-2 overflow-x-auto">
+          {[
+            { id: "hero", label: "Accueil" },
+            { id: "services", label: "Services" },
+            { id: "formations", label: "Formations" },
+            { id: "projects", label: "Projets" },
+            { id: "contact", label: "Contact" },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveSection(item.id)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                activeSection === item.id
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 text-gray-700"
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <main className="max-w-6xl mx-auto px-4 py-10">
+        {activeSection === "hero" && (
+          <section className="py-20 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+              Je crée des solutions web et mobiles modernes
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              Développeur web et mobile passionné, je conçois des expériences digitales efficaces et élégantes.
+            </p>
+            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold">
+              Voir mes services
+            </button>
+          </section>
+        )}
+
+        {activeSection === "services" && (
+          <section className="py-10">
+            <h2 className="text-3xl font-bold mb-6">Services</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 rounded-2xl border border-gray-200">
+                <h3 className="text-xl font-semibold mb-2">Sites web modernes</h3>
+                <p className="text-gray-600">Des interfaces rapides, responsive et adaptées à votre activité.</p>
+              </div>
+              <div className="p-6 rounded-2xl border border-gray-200">
+                <h3 className="text-xl font-semibold mb-2">Applications mobiles</h3>
+                <p className="text-gray-600">Des apps performantes pour Android et iOS.</p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {activeSection === "formations" && (
+          <section className="py-10">
+            <h2 className="text-3xl font-bold mb-6">Formations</h2>
+            <p className="text-gray-600">Des formations pratiques en développement web, mobile et informatique.</p>
+          </section>
+        )}
+
+        {activeSection === "projects" && (
+          <section className="py-10">
+            <h2 className="text-3xl font-bold mb-6">Projets</h2>
+            <p className="text-gray-600">Quelques projets réalisés avec des technologies modernes.</p>
+          </section>
+        )}
+
+        {activeSection === "contact" && (
+          <section className="py-10">
+            <h2 className="text-3xl font-bold mb-6">Contact</h2>
+            <p className="text-gray-600">N’hésitez pas à me contacter pour votre prochain projet.</p>
+          </section>
+        )}
+      </main>
+    </div>
+  );
+}
